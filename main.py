@@ -6,6 +6,14 @@ CHOICES = ("rock", "paper", "scissors")
 
 def determine_winner(player_choice, computer_choice):
     """Return the result of one round from the player's perspective."""
+    invalid_choices = [
+        choice for choice in (player_choice, computer_choice) if choice not in CHOICES
+    ]
+    if invalid_choices:
+        raise ValueError(
+            f"Choices must be one of {', '.join(CHOICES)}; got {invalid_choices!r}"
+        )
+
     if player_choice == computer_choice:
         return "draw"
 
