@@ -41,7 +41,12 @@ def get_player_choice():
 
 def main():
     """Play one round of rock, paper, scissors."""
-    player_choice = get_player_choice()
+    try:
+        player_choice = get_player_choice()
+    except (EOFError, KeyboardInterrupt):
+        print("\nGoodbye!")
+        return
+
     computer_choice = random.choice(CHOICES)
     result = determine_winner(player_choice, computer_choice)
 
